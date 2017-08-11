@@ -1,6 +1,6 @@
 {
   "name": "gangster",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A roleplay Discord Bot that focuses on the dealing of drugs!",
   "main": "main.js",
   "scripts": {
