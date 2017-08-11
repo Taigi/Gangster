@@ -1,0 +1,23 @@
+{
+  "name": "gangster",
+  "version": "0.0.1",
+  "description": "A roleplay Discord Bot that focuses on the dealing of drugs!",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Coocla33/Gangster.git"
+  },
+  "author": "Misha Bruinsma | Coocla33",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Coocla33/Gangster/issues"
+  },
+  "homepage": "https://github.com/Coocla33/Gangster#readme",
+  "dependencies": {
+    "discord.js": "^11.1.0",
+    "fs": "0.0.1-security"
+  }
+}
