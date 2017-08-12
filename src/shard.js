@@ -1,8 +1,4 @@
 // Setup variables
-// Emitter setup
-const EventEmitter = require('events')
-class Emitter extends EventEmitter {}
-const emitter = new Emitter()
 
 const fs = require('fs')
 
@@ -30,11 +26,11 @@ global.bot = new Discord.Client({
 // When bot is fully logged in
 bot.on('ready', () => {
   utils.logger.log('Shard: ' + shard, 'Ready with ' + bot.guilds.size + ' ' + (bot.guilds.size > 1 ? 'guilds' : 'guild') + ' (' + (new Date() - startup) + 'ms)')
-  emitter.emit('startup')
+  startupFunction()
 })
 
 // Startup/loading everything
-emitter.on('startup', () => {
+function startupFunction() {
 
   // Load commands
   loadCommands(function(commands) {
@@ -43,7 +39,7 @@ emitter.on('startup', () => {
     started = true
   })
 
-})
+}
 
 // Message Handleing
 bot.on('message', (msg) => {
