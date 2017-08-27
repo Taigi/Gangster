@@ -11,7 +11,9 @@ let shards = parseInt(process.env['SHARD_COUNT'], 16)
 // Logging
 global.utils = {
   'misc': require('./utils/misc.js'),
-  'logger': require('./utils/logger.js')
+  'logger': require('./utils/logger.js'),
+  'db': require('./utils/data.js'),
+  'economy': require('./utils/economy.js')
 }
 utils.logger.log('Shard: ' + shard, 'Spawned Process')
 
@@ -36,7 +38,10 @@ function startupFunction() {
   loadCommands(function(commands) {
     utils.logger.log('Shard: ' + shard, 'Loaded ' + commands.count + ' ' + (commands.count > 1 ? 'commands' : 'command'))
     global.commands = commands
-    started = true
+    utils.db.initialize().then(() => {
+      utils.logger.log('Shard: ' + shard, 'Database Initialized')
+      started = true
+    })
   })
 
 }
@@ -150,6 +155,11 @@ function loadCommands(callback) {
         }
 
       } else if (commandFile == 'METADATA.json') {
+
+        if (!commands.all[directory]) {
+          commands.all[directory] = {}
+        }
+
         commands.all[directory].METADATA = require(__dirname + '/commands/' + directory + '/METADATA.json')
       }
 
