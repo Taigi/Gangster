@@ -8,7 +8,7 @@ exports.data = {
 exports.run = function(msg, data) {
 
   // Check if a suffix is not present
-  if (!data.suffix) {
+  if (!data.suffix || data.suffix == '--show') {
 
     // Setup message
     let messageArray = []
@@ -45,7 +45,13 @@ exports.run = function(msg, data) {
     }
 
     // Send embed
-    msg.channel.send({embed})
+    if (data.suffix && data.suffix == '--show') {
+      msg.channel.send({embed})
+    } else {
+      msg.author.send({embed}).then(() => {
+        msg.channel.send('I have send you all my commands trough a **private message**!')
+      })
+    }
 
   // Suffix is present.
   } else {

@@ -1,8 +1,4 @@
 // Setup variables
-// Emitter setup
-const EventEmitter = require('events')
-class Emitter extends EventEmitter {}
-const emitter = new Emitter()
 
 const fs = require('fs')
 
@@ -15,7 +11,9 @@ let shards = parseInt(process.env['SHARD_COUNT'], 16)
 // Logging
 global.utils = {
   'misc': require('./utils/misc.js'),
-  'logger': require('./utils/logger.js')
+  'logger': require('./utils/logger.js'),
+  'db': require('./utils/data.js'),
+  'economy': require('./utils/economy.js')
 }
 utils.logger.log('Shard: ' + shard, 'Spawned Process')
 
@@ -30,20 +28,23 @@ global.bot = new Discord.Client({
 // When bot is fully logged in
 bot.on('ready', () => {
   utils.logger.log('Shard: ' + shard, 'Ready with ' + bot.guilds.size + ' ' + (bot.guilds.size > 1 ? 'guilds' : 'guild') + ' (' + (new Date() - startup) + 'ms)')
-  emitter.emit('startup')
+  startupFunction()
 })
 
 // Startup/loading everything
-emitter.on('startup', () => {
+function startupFunction() {
 
   // Load commands
   loadCommands(function(commands) {
     utils.logger.log('Shard: ' + shard, 'Loaded ' + commands.count + ' ' + (commands.count > 1 ? 'commands' : 'command'))
     global.commands = commands
-    started = true
+    utils.db.initialize().then(() => {
+      utils.logger.log('Shard: ' + shard, 'Database Initialized')
+      started = true
+    })
   })
 
-})
+}
 
 // Message Handleing
 bot.on('message', (msg) => {
@@ -154,6 +155,11 @@ function loadCommands(callback) {
         }
 
       } else if (commandFile == 'METADATA.json') {
+
+        if (!commands.all[directory]) {
+          commands.all[directory] = {}
+        }
+
         commands.all[directory].METADATA = require(__dirname + '/commands/' + directory + '/METADATA.json')
       }
 

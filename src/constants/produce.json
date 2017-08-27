@@ -1,0 +1,56 @@
+{
+  "cannabis": {
+    "name": "Cannabis",
+    "description": "Cannabis (/ˈkænəbɪs/) is a genus of flowering plant in the family Cannabaceae. The number of species within the genus is disputed. Three species may be recognized, Cannabis sativa, Cannabis indica and Cannabis ruderalis; C. ruderalis may be included within C. sativa; or all three may be treated as subspecies of a single species, C. sativa. The genus is indigenous to central Asia and the Indian subcontinent.",
+    "wikipedia": "https://en.wikipedia.org/wiki/Cannabis",
+    "format": "gram",
+    "minlvl": 1,
+    "production": {
+      "1": {
+        "cost": 250,
+        "minlvl": 1,
+        "time": 60000,
+        "reward": {
+          "min": 40,
+          "max": 60
+        }
+      },
+      "2": {
+        "cost": 1250,
+        "minlvl": 5,
+        "time": 600000,
+        "reward": {
+          "min": 80,
+          "max": 150
+        }
+      }
+    }
+  },
+  "hashish": {
+    "name": "Hashish",
+    "description": "Hashish, or hash, is a drug made from cannabis. While herbal cannabis is referred to as Marijuana, hashish is cannabis resin. It is consumed by smoking a few grains, typically in a pipe, bong, vaporizer or joint, or via oral ingestion. As pure hashish will not burn if rolled alone in a joint, it is typically mixed with herbal cannabis, tobacco or another type of herb for this method of consumption. Depending on region or country, multiple synonyms and alternative names exist.",
+    "wikipedia": "https://en.wikipedia.org/wiki/Hashish",
+    "format": "gram",
+    "minlvl": 3,
+    "production": {
+      "1": {
+        "cost": 750,
+        "minlvl": 3,
+        "time": 300000,
+        "reward": {
+          "min": 4,
+          "max": 6
+        }
+      },
+      "2": {
+        "cost": 2250,
+        "minlvl": 8,
+        "time": 900000,
+        "reward": {
+          "min": 10,
+          "max": 14
+        }
+      }
+    }
+  }
+}
