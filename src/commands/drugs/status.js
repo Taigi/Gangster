@@ -22,7 +22,7 @@ exports.run = function(msg, data) {
           messageArray.push('**' + product.product.name + ' (Tier ' + product.product.tier + ') **- ' + '█'.repeat(timeBarWidth - timeBarCount) + '▒'.repeat(timeBarCount))
           messageArray.push(' '.repeat(product.product.name.length * 2.75 + 15 + product.product.tier.length) + '└─ ** ' + utils.misc.timeLeft(timeLeftMs) + ' left ** ─┘\n')
         } else {
-          messageArray.push('**' + product.product.name + ' (Tier ' + product.product.tier + ') ** - **FINISHED**')
+          messageArray.push('**' + product.product.name + ' (Tier ' + product.product.tier + ') ** - **FINISHED**\n')
         }
 
       }
